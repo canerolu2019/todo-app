@@ -35,22 +35,9 @@ export default {
         }
     },
     methods:{
-           deleteTodo(index) {
-               console.log(index);
-                if(localStorage.getItem("Filtered_Items") !== '[]'){
-                    var elemRemoveTitle=document.getElementsByClassName("todoContainer")[index].children[0].childNodes[0].childNodes[1].textContent;
-                    let filteredStorage=JSON.parse(localStorage.getItem('Filtered_Items'));
-                    let newList=filteredStorage.filter(x=>x.title !== elemRemoveTitle);
-                    localStorage.removeItem("Filtered_Items");
-                    localStorage.setItem('Filtered_Items',JSON.stringify(newList));
-                    var tasksList=JSON.parse(localStorage.getItem("Tasks"));
-                    tasksList=tasksList.filter(x=>x.title != elemRemoveTitle);
-                    localStorage.removeItem('Tasks');
-                    localStorage.setItem('Tasks',JSON.stringify(tasksList));
-                    const elements = document.getElementsByClassName("todoContainer");
-                    elements[index].remove();
-
-                }
+           deleteTodo(index)  {
+               console.log(index); 
+               this.tasks.splice(index, 1)
            
         }
     },
